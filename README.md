@@ -94,7 +94,7 @@ It gives the warning "_the discrete Fourier transform may not be invertible unle
 - Despite being perhaps a bit more intuitive, Cook's definitions clearly have a redundant parameter, since it is really only the product $b = σ q$ that is independent.
 - A small bit of algebra shows:
 
-$$ (a,b) = (1 - \log_{2π}(m|σ q|), σ q) $$
+$$ (a, b) = (1 - \log_{2π}(m|σ q|), σ q) $$
 
 $$ (σ q, m) = (b, {2π}^{1 - a} / |b|) $$
 
@@ -119,8 +119,8 @@ $$ f(t) = \frac{1}{ \sqrt{2π} } \int_{-∞}^{∞} f(ω) e^{-i ω t} d ω $$
 
 #### Pure mathematics / Systems engineering
 - $(a, b) = (1,-1)$
-- $b = σ q = ±1 × \mp 1 = -1$
-- $(σ, q, m) = (±1, \mp 1, 1) = (±, \mp 1, 1)$
+- $b = σ q = ±1 × ∓1 = -1$
+- $(σ, q, m) = (±1, ∓1, 1) = (±, ∓1, 1)$
 
 $$ f(ω) = \int_{-∞}^{∞} f(t) e^{-i ω t} dt $$
 
@@ -142,7 +142,7 @@ $$ f(t) = \frac{1}{2π} \int_{-∞}^{∞} f(ω) e^{-i ω t} d ω $$
 
 
 #### Classical physics
-- $(a,b) = (-1,1)$
+- $(a, b) = (-1,1)$
 - $b = σ q = ±1 × ±1 = 1$
 - $(σ, q, m) = (±1, ±1, 4π^2) = (±, ±1, τ^2)$
 
@@ -153,9 +153,9 @@ $$ f(t) = \int_{-∞}^{∞} f(ω) e^{-i ω t} d ω $$
 - also for 'data analysis', according to https://reference.wolfram.com/language/ref/FourierParameters.html
 
 #### Signal processing
-- $(a,b) = (0,-2π)$
-- $b = σ q = ±1 × \mp 2π = -2π$
-- $(σ, q, m) = (±1, \mp 2π, 2π) = (±, ±τ, τ)$
+- $(a, b) = (0,-2π)$
+- $b = σ q = ±1 × ∓2π = -2π$
+- $(σ, q, m) = (±1, ∓2π, 2π) = (±, ±τ, τ)$
 
 $$ f(ω) = \int_{-∞}^{∞} f(t) e^{-2π i ω t} dt $$
 
@@ -199,7 +199,7 @@ $$ \text{FT}_{0,1}\lbrace f(t - h) \rbrace = e^{i h ω} f(ω) $$
 
 $$ \braket{f, g} = \int_{-∞}^{∞} f(t) \ g^{*}(t) dt $$
 
-- It can then be stated, using the 'modern physics' convention $(a,b) = (0, 1)$, very nicely as
+- It can then be stated, using the 'modern physics' convention $(a, b) = (0, 1)$, very nicely as
 
 $$ \braket{f(t), g(t)} = \braket{f(ω), g(ω)} $$
 
@@ -346,9 +346,34 @@ _"5.2.1 Spectra via Correlation Functions_
 
 _... Then Fourier transforms of_ $R(τ)$ _will exist as defined by"_
 
-$$ S_{xx}(f) = \int_{-∞}^{+∞} R_{xx}(τ) \ e^{-j 2π f τ} dτ $$
+$$ S_{xx}(f) = \int_{-∞}^{∞} R_{xx}(τ) \ e^{-j 2π f τ} dτ $$
 
-- This is the 'signal processing' convention $(a,b) = (0, -2π)$
-    - $(a,b) = (0,-2π)$
-    - $b = σ q = ±1 × \mp 2π = -2π$
-    - $(σ, q, m) = (±1, \mp 2π, 2π) = (±, ±τ, τ)$
+- This is the 'signal processing' convention $(a, b) = (0, -2π)$
+    - $(a, b) = (0,-2π)$
+    - $b = σ q = ±1 × ∓2π = -2π$
+    - $(σ, q, m) = (±1, ∓2π, 2π) = (±, ∓τ, τ)$
+ 
+
+[Theory of nanoparticle cooling by elliptic coherent scattering, Henning Rudolph, Jonas Schäfer, Benjamin A. Stickler, and Klaus Hornberger, Phys. Rev. A 103, 043514 – Published 23 April 2021](https://journals.aps.org/pra/abstract/10.1103/PhysRevA.103.043514)
+
+Section VI.A, Eq. 34
+
+_"Defining the Fourier transform of the cavity mode deviations as_
+
+$$ b_j[ω] = \frac{1}{\sqrt{2π}} \int_{-∞}^{∞} dt \ e^{-iωt} δb_j(t) $$
+
+- This implies $m = 2π$ and $b = -1$, implying
+    - $(a, b) = (0, -1)$
+    - $b = σ q = ±1 × ∓1 = -1$
+    - $(σ, q, m) = (±1, ∓1, 2π) = (±, ∓1, τ)$
+- This isn't one of the standard options either!
+
+However, the proceeding text
+
+_"and likewise for the mechanical modes_ $a_Q$ _, yields the coupled quantum Langevin equations in Fourier space:"_
+
+$$ -iω b_j[ω] = (iΔ_j - κ)b_j[ω] + \sqrt{2κ} η_j[ω] + \sum_{Q \in S'_j} g^*_Q (a_Q[ω] + a_Q^†[-ω]) $$
+
+suggests perhaps the definition had an erroneous minus sign, since the LHS __should__ read $\dot{b}_j[ω] = +iω b_j[ω]$ if the minus sign is deliberate.
+
+If not, the definition becomes the more typical 'modern physics' definition
