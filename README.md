@@ -45,18 +45,18 @@ where
 An intuituion on the presence of these arbitrary parameters is that they represent two independent free choices to be made when defining the Fourier transform pair:
 
 
-### Normalisation parameter, $a \in \mathbb{R}$
+### Normalisation parameter, a
 - Choosing parameter $a$ can be seen as an arbitrary choice of how to satisfy the only actual meaningful constraint:
 
 $$ C_- \ C_+ = |b|/2π $$
 
-defining $C_± = \sqrt{ |b| / (2π)^{1 ± a} }$ as the normalisation constants outside the forward ($C_-$) and inverse ($C_+$) transforms.
+defining $C_± = \sqrt{ |b| / (2π)^{1 ± a} }$ (with $a \in \mathbb{R}$) as the normalisation constants outside the forward ($C_-$) and inverse ($C_+$) transforms.
 
 
-### Frequency/Rotation parameter, $b \in \ ?$*
-- Choosing parameter $b$ can be seen as another arbitrary decision of how much one would like to define the transforms in:
-    - angular frequency terms ($b = ±1$, with angles measured in radians), or
-    - ordinary frequency terms ($b = ±2π$, with angles measured in degrees).
+### Frequency/Rotation parameter, b
+- Choosing parameter $b$ can be seen as another arbitrary decision of how much one would like to define the transforms in terms of:
+    - angular frequency ($b = ±1$, with angles measured in radians), or
+    - ordinary frequency ($b = ±2π$, with angles measured in degrees).
 
 - The arbitrary sign of $b$ represents the ambiguity in defining a positive rotational direction of an angular frequency.
 
@@ -64,33 +64,33 @@ defining $C_± = \sqrt{ |b| / (2π)^{1 ± a} }$ as the normalisation constants o
 
 - This sign decision does not have any bearing on the normalisation constraint since it affects each definition oppositely and cancels. Hence, $b$ appears as $|b|$ in that constraint.
 
-\* While it seems clear any $a \in \mathbb{R}$ satisfies the normalisation constraint, it is unclear to me what the full range of valid values for $b$ are.
+- While it seems clear any $a \in \mathbb{R}$ satisfies the normalisation constraint, it is unclear to me what the full range of valid values for $b$ are ($b \in \ ?$)
 
-For example, in a computed (and therefore discrete) Fourier transform, https://reference.wolfram.com/language/ref/FourierParameters.html describes how "_the second parameter needs to be relatively prime to the data length to guarantee invertibility_".
+- For example, in a computed (and therefore discrete) Fourier transform, https://reference.wolfram.com/language/ref/FourierParameters.html describes how "_the second parameter needs to be relatively prime to the data length to guarantee invertibility_".
 
-It gives the warning "_the discrete Fourier transform may not be invertible unless [_$b$_] is an integer having no factors in common with the length of the input_".
+- It gives the warning "_the discrete Fourier transform may not be invertible unless [_$b$_] is an integer having no factors in common with the length of the input_".
 
 
-### Sign convention, $σ = ±1 → b = ±1$
+### Sign convention, σ = ±1 → b = ±1
 - Choosing $σ = +1$ (and hence $b = 1$) means the _forward_ transform uses $e^{i ω t}$ (and hence rotates anti-clockwise when defining angles in the common, Cartesian plane / Argand diagram, convention), and the _inverse_ transform uses $e^{-i ω t}$.
 - Using the reverse $σ = b = -1$ is arguably a lot less intuitive from this perspective.
 
 
-### Frequency convention, $q = 1$ or $2π → b = 1$ or $2π$
+### Frequency convention, q = 1 or 2π → b = 1 or 2π
 - $q = 1 → b = 1$ results in an "angular frequency transform", using $e^{i ω t}$.
 - $q = 2π → b = 2π$ results in an "ordinary frequency transform", using $e^{i 2π ω t}$.
 
 - If choosing $q = b = 2π$, it seems sensible to use a different symbol for frequency, to thoroughly avoid adding any more confusion to this whole matter! ($f$ being the natural choice in physics; although $ξ$ is used in the [wiki](https://en.wikipedia.org/wiki/Fourier_transform#Other_conventions) to, presumably, avoid clashing with the even more commonly used, in maths at least, function symbol.)
 
 
-### Scaling convention, $m = 1$ or $2π → a = 1$ or $0$
+### Scaling convention, m = 1 or 2π → a = 1 or 0
 - $m = 1 → a = 1$
 - $m = 2π → a = 0$
 
 - This determines how to share, amongst the normalisation constants outside the forward and inverse transform definitions, the necessary $1 / 2π$ that must be their product (assuming $|b| = 1$).
 
 
-### Converting between $(a, b)$ and $(σ q, m)$
+### Converting between (a, b) and (σq, m)
 - Despite being perhaps a bit more intuitive, Cook's definitions clearly have a redundant parameter, since it is really only the product $b = σ q$ that is independent.
 - A small bit of algebra shows:
 
@@ -168,7 +168,7 @@ $$ f(t) = \int_{-∞}^{∞} f(ω) e^{2π i ω t} d ω $$
 Adapted from https://www.johndcook.com/blog/fourier-theorems/
 
 
-### Integration (depends only on $m$):
+### Integration (depends only on m):
 - _"The integral of a function is proportional to its Fourier transform evaluated at 0"_
 
 - In general
@@ -180,7 +180,7 @@ $$ \int_{-∞}^{∞} f(t) dt = \sqrt{m} \ f(ω = 0) $$
 $$ f(ω = 0) = \frac{1}{ \sqrt{2π} } \int_{-∞}^{∞} f(t) dt $$
 
 
-### Shift (depends only on $b = σ q$):
+### Shift (depends only on b = σq):
 - _"Shifting the argument of a function rotates its Fourier transform"_
 
 - In general
@@ -214,7 +214,7 @@ $$ \int_{-∞}^{∞} |f(t)|^2 dt = \int_{-∞}^{∞} |f(ω)|^2 dω $$
 - In this case, other conventions often include factors of $\sqrt{2π}$ or $1 / \sqrt{2π}$
 
 
-### Convolution (depends only on $m$)
+### Convolution (depends only on m)
 - _"The Fourier Transform of a convolution of two functions is proportional to the product of the Fourier transforms of each function"_
 
 - Defined for two functions $f, g$ as
@@ -230,7 +230,7 @@ $$ \text{FT} \lbrace (f * g) \rbrace = \sqrt{m} f(ω)g(ω) $$
 $$ \text{FT} \lbrace (f * g) \rbrace = \sqrt{2π} f(ω)g(ω) $$
 
 
-### Derivative (depends only on $b = σ q$):
+### Derivative (depends only on b = σq):
 - Commonly used for time derivative to derive equations of motion
 - Derived below (adapted from [this StackExchange](https://math.stackexchange.com/questions/430858/fourier-transform-of-derivative) that uses [integration by parts](https://en.wikipedia.org/wiki/Integration_by_parts)):
 
